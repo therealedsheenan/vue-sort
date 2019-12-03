@@ -9,6 +9,8 @@ Requirements:
 
 The design and HTML is provided.
 
+Submit your completed test assignment as a new repository and send GitHub link to jobs@mailerlite.com.
+
 ## Project setup
 ```
 yarn install
