@@ -1,4 +1,4 @@
-# sortable-test-assignment
+# vue-sort
 
 ## Project setup
 ```
