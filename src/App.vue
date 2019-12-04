@@ -30,6 +30,7 @@ export default {
   data() {
     return {
       data: {
+        disabled: true,
         name: "body",
         className: "p-10 xl:p-20",
         items: [

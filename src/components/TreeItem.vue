@@ -1,28 +1,30 @@
 <template>
   <div>
-    <div class="flex items-center rounded-sm p-1 mx-2  hover:bg-gray-700 mb-1">
-      <button
-        class="flex focus:outline-none focus:shadow-none"
-        @click.prevent="isOpen = !isOpen"
-      >
-        <icon
-          :name="isOpen ? 'triangle-down' : 'triangle-right'"
-          size="12"
-          class="mr-1"
-          :class="{ 'opacity-0': !children.length }"
-        ></icon>
-      </button>
+    <draggable group="elements" :disabled="data.disabled">
+      <div class="flex items-center rounded-sm p-1 mx-2  hover:bg-gray-700 mb-1">
+        <button
+          class="flex focus:outline-none focus:shadow-none"
+          @click.prevent="isOpen = !isOpen"
+        >
+          <icon
+            :name="isOpen ? 'triangle-down' : 'triangle-right'"
+            size="12"
+            class="mr-1"
+            :class="{ 'opacity-0': !children.length }"
+          />
+        </button>
 
-      <icon
-        :name="items[data.name].icon || 'div'"
-        size="12"
-        color="CapeCod"
-        class="mr-1"
-      ></icon>
-      <span class="text-xs text-gray-200">{{
-        items[data.name].name || data.name
-      }}</span>
-    </div>
+        <icon
+          :name="items[data.name].icon || 'div'"
+          size="12"
+          color="CapeCod"
+          class="mr-1"
+        />
+        <span class="text-xs text-gray-200">{{
+          items[data.name].name || data.name
+        }}</span>
+      </div>
+    </draggable>
 
     <div class="ml-1" v-if="children.length" :hidden="!isOpen">
       <tree-item v-for="(item, index) in children" :key="index" :data="item" />
@@ -31,13 +33,15 @@
 </template>
 
 <script>
+import draggable from "vuedraggable";
 import Icon from "./Icon";
 
 export default {
   name: "tree-item",
 
   components: {
-    Icon
+    Icon,
+    draggable
   },
 
   computed: {
