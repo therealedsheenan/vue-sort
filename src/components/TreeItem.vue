@@ -1,7 +1,11 @@
 <template>
   <div>
-    <draggable group="elements" :disabled="data.disabled">
-      <div class="flex items-center rounded-sm p-1 mx-2  hover:bg-gray-700 mb-1">
+    <draggable
+      group="elements"
+      :disabled="data.disabled"
+      v-bind:class="{ 'draggable': !data.disabled }"
+    >
+      <div class="flex items-center rounded-sm p-1 mx-2 hover:bg-gray-700 mb-1">
         <button
           class="flex focus:outline-none focus:shadow-none"
           @click.prevent="isOpen = !isOpen"
@@ -97,5 +101,9 @@ export default {
 }
 .activeItem svg #CapeCod {
   fill: #b0b2b2;
+}
+
+.draggable {
+  cursor: move;
 }
 </style>
