@@ -29,7 +29,6 @@
     </div>
 
     <draggable
-      v-if="children.length"
       class="ml-1"
       :list="children"
       :group="{ name: 'g1' }"
