@@ -8,7 +8,7 @@
         <button
           class="close-icon p-2 focus:outline-none focus:shadow-none float-right"
         >
-          <icon name="x" color="CapeCod" size="12"></icon>
+          <icon name="x" color="CapeCod" size="12" />
         </button>
       </div>
 

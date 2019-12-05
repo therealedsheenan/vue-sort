@@ -1,41 +1,49 @@
 <template>
   <div>
-    <draggable
-      group="elements"
+    <div
+      class="flex items-center rounded-sm p-1 mx-2 hover:bg-gray-700 mb-1 drag-area"
       :disabled="data.disabled"
-      v-bind:class="{ 'draggable': !data.disabled }"
+      v-bind:class="{ draggable: !data.disabled }"
     >
-      <div class="flex items-center rounded-sm p-1 mx-2 hover:bg-gray-700 mb-1">
-        <button
-          class="flex focus:outline-none focus:shadow-none"
-          @click.prevent="isOpen = !isOpen"
-        >
-          <icon
-            :name="isOpen ? 'triangle-down' : 'triangle-right'"
-            size="12"
-            class="mr-1"
-            :class="{ 'opacity-0': !children.length }"
-          />
-        </button>
-
+      <button
+        class="flex focus:outline-none focus:shadow-none"
+        @click.prevent="isOpen = !isOpen"
+      >
         <icon
-          :name="items[data.name].icon || 'div'"
+          :name="isOpen ? 'triangle-down' : 'triangle-right'"
           size="12"
-          color="CapeCod"
           class="mr-1"
+          :class="{ 'opacity-0': !children.length }"
         />
-        <span class="text-xs text-gray-200">{{
-          items[data.name].name || data.name
-        }}</span>
-      </div>
-    </draggable>
+      </button>
 
-    <div class="ml-1" v-if="children.length" :hidden="!isOpen">
-      <tree-item v-for="(item, index) in children" :key="index" :data="item" />
+      <icon
+        :name="items[data.name].icon || 'div'"
+        size="12"
+        color="CapeCod"
+        class="mr-1"
+      />
+      <span class="text-xs text-gray-200">{{
+        items[data.name].name || data.name
+      }}</span>
     </div>
+
+    <draggable
+      v-if="children.length"
+      class="ml-1"
+      :list="children"
+      :group="{ name: 'g1' }"
+      tag="div"
+    >
+      <tree-item
+        v-for="(item, index) in children"
+        :key="index"
+        :data="item"
+        :hidden="!isOpen"
+      />
+    </draggable>
   </div>
 </template>
-
 <script>
 import draggable from "vuedraggable";
 import Icon from "./Icon";
